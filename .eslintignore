@@ -1,0 +1,10 @@
+/build/
+/config/
+/dist/
+/*.js
+/test/unit/coverage/
+/build/*.js
+/config/*.js
+/src/util/*.js
+/src/polyline.js
+/src/chat/*.js
