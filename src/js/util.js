@@ -7,9 +7,11 @@ export function getUrlParams(name) {
   return rs ? decodeURI(rs[2]) : null
 }
 
-/*
-  @desc 日期格式化
-*/
+/**
+ * 日期格式化
+ * @param {*} date 
+ * @param {*} fmt 
+ */
 export function dateFormat(date, fmt) {
   if(!date) {
       date = new Date()
@@ -80,4 +82,27 @@ export function isInteger(num) {
 */
 export function isDecimal(num) {
   return num % 1 !== 0
+}
+
+/**
+ * 对列表按指定字段排序
+ * @param {*} list
+ * @param {*} filedName 排序字段
+ * @param {*} order 默认升序，降序(desc)
+ */
+export function listOrderByField(list, fieldName, order) {
+  let temp
+  for (let i = 0; i < list.length; i++) {
+    for (let j = 0; j < list.length - i; j++) {
+      if (list[j][fieldName] > (list[j + 1] && list[j + 1][fieldName])) {
+        temp = list[j + 1]
+        list[j + 1] = list[j]
+        list[j] = temp
+      }
+    }
+  }
+  if (order == 'desc') {
+    list = list.reverse()
+  }
+  return list
 }
