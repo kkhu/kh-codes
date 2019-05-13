@@ -7,55 +7,37 @@ export function getUrlParams(name) {
   return rs ? decodeURI(rs[2]) : null
 }
 
+
 /**
  * 日期格式化
- * @param {*} date 
- * @param {*} fmt 
+ * date {Date|Number} 日期
+ * fmt {String} 格式
  */
-export function dateFormat(date, fmt) {
-  if(!date) {
-      date = new Date()
-  }
+export function dateFormat(date, fmt = 'yyyy-MM-dd') {
 
-  let year = date.getFullYear()
-  let month = date.getMonth() + 1
-  month = month < 10 ? ('0' + month) : month
-  let  d = date.getDate()
-  d = d < 10 ? ('0' + d) : d
-  let  hour = date.getHours()
-  hour = hour < 10 ? ('0' + hour) : hour
-  let minutes = date.getMinutes()
-  minutes = minutes < 10 ? ('0' + minutes) : minutes
-  let seconds = date.getSeconds()
-  seconds = seconds < 10 ? ('0' + seconds) : seconds
-  let milliseconds = date.getMilliseconds()
+  if(!date) date = new Date();
+  if (typeof date === 'number') date = new Date(date);
 
-  fmt = fmt ? fmt : 'yyyy-MM-dd'
-
-  if (/yyyy/.test(fmt)) {
-    fmt = fmt.replace('yyyy', year)
-  }  
-  if (/MM/.test(fmt)) {
-    fmt = fmt.replace('MM', month)
-  } 
-  if (/dd/.test(fmt)) {
-    fmt = fmt.replace('dd',d)
-  } 
-  if (/hh/.test(fmt)) {
-    fmt = fmt.replace('hh', hour)
-  } 
-  if (/mm/.test(fmt)) {
-    fmt = fmt.replace('mm', minutes)
-  } 
-  if (/ss/.test(fmt)) {
-    fmt = fmt.replace('ss',seconds)
-  } 
-  if (/SS/.test(fmt)) {
-    fmt = fmt.replace('SS',milliseconds)
-  }  
-
-  return fmt 
+  return fmt.replace('yyyy', date.getFullYear())
+    .replace('MM', String(date.getMonth() + 1).padStart(2, '0'))
+    .replace('dd', String(date.getDate()).padStart(2, '0'))
+    .replace('hh', String(date.getHours()).padStart(2, '0'))
+    .replace('mm', String(date.getMinutes()).padStart(2, '0'))
+    .replace('ss', String(date.getSeconds()).padStart(2, '0'))
+    .replace('SS', date.getMilliseconds());
 }
+
+/**
+ * 时间格式化
+ * time {Number} 时分秒数
+ * fmt {String} 格式
+ */
+export function timeFormat(time, fmt = 'hh:mm:ss') {
+  return fmt.replace('hh', String(Math.floor(time / 3600)).padStart(2, '0'))
+    .replace('mm', String(Math.floor(time % 3600 / 60)).padStart(2, '0'))
+    .replace('ss', String(Math.floor(time % 60)).padStart(2, '0'));
+}
+
 
 /*
 @desc 对数字进行分隔
@@ -67,7 +49,7 @@ export function dateFormat(date, fmt) {
 输出：2，123，456
 */
 export function splitNum(num, splitSymbal = ',') {
-  return (num + '').replace(/\B(?=(\d{3})+(?!\d))/g, splitSymbal)
+  return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, splitSymbal)
 }
 
 /*
@@ -138,6 +120,6 @@ export function amountToUp(n) {
     s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s
   }
   return head + s.replace(/(零.)*零元/, '元')
-      .replace(/(零.)+/g, '零')
-      .replace(/^整$/, '零元整')
+    .replace(/(零.)+/g, '零')
+    .replace(/^整$/, '零元整')
 }

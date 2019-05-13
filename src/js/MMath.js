@@ -86,10 +86,10 @@ let MMath = {
     })
   },
   fac(n) {
-    return n <= 0 ? 1 : n * MMath.fac(n - 1);
+    return n <= 1 ? 1 : n * MMath.fac(n - 1);
   },
   comb(m, n) {
-    return m < n ? 0 : MMath.fac(m) / (MMath.fac(n) * MMath.fac(m -n));
+    return m < n ? 0 : MMath.fac(m) / (MMath.fac(n) * MMath.fac(m - n));
   },
   /**
    *高斯算法
