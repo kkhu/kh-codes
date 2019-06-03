@@ -1,8 +1,9 @@
 
-const webpack = require('webpack')
-const path = require('path')
-const utils = require('./utils')
-const config = require('./config')
+const webpack = require('webpack');
+const path = require('path');
+const utils = require('./utils');
+const config = require('./config');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -10,7 +11,7 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    main: '../src/main.js',
+    main: '../src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -72,5 +73,17 @@ module.exports = {
         }
       }
     ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: '主页',
+      template: 'index.html',
+      inject: true
+    })
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
   }
 }
