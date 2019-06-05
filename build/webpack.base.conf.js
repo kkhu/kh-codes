@@ -11,15 +11,16 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    main: '../src/main.js'
+    app: './src/main.js'
   },
   output: {
-    path: config.build.assetsRoot,
+    path: path.resolve(__dirname, '../dist'),
+    // path: config.build.assetsRoot,
     filename: '[name].[hash:8].js',
     chunkFilename: "[name].[chunkHash:4].js?_t=[chunkhash:8]",
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    // publicPath: process.env.NODE_ENV === 'production'
+    //   ? config.build.assetsPublicPath
+    //   : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.scss'],
@@ -77,12 +78,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: '主页',
+      filename: 'index.html',
       template: 'index.html',
       inject: true
     })
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    // contentBase: path.resolve(__dirname, '../dist'), //path.join(__dirname, "../dist/"),
+    contentBase: '../dist',
     compress: true,
     port: 9000
   }
