@@ -1,6 +1,7 @@
 <template>
   <article>
-    <c-button text="确认" />
+    hello
+    <!-- <c-button text="确认" /> -->
   </article>
 </template>
 

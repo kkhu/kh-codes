@@ -4,7 +4,7 @@ const path = require('path');
 const utils = require('./utils');
 const config = require('./config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -36,7 +36,8 @@ module.exports = {
         options: {
           loaders: {
             'js': 'babel-loader',
-            'scss': 'vue-style-loader!css-loader!postcss-loader!sass-loader'
+            'scss': 'vue-style-loader!css-loader!postcss-loader!sass-loader',
+            'stylus': 'vue-style-loader!css-loader!postcss-loader!stylus-loader'
           }
         }
       },
@@ -76,6 +77,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       title: '主页',
       filename: 'index.html',
