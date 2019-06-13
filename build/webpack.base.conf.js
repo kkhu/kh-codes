@@ -23,7 +23,7 @@ module.exports = {
     //   : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.scss'],
+    extensions: ['.js', '.vue', '.json', '.stylus', '.scss'],
     alias: {
       '@': resolve('src'),
     }
@@ -35,15 +35,19 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            'js': 'babel-loader',
-            'scss': 'vue-style-loader!css-loader!postcss-loader!sass-loader',
-            'stylus': 'vue-style-loader!css-loader!postcss-loader!stylus-loader'
+            'js': 'babel-loader'
+            // 'scss': 'vue-style-loader!css-loader!postcss-loader!sass-loader',
+            // 'stylus': 'vue-style-loader!css-loader!postcss-loader!stylus-loader'
           }
         }
       },
       {
         test: /\.scss$/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader',
+      },
+      {
+        test: /\.stylus$/,
+        loader: 'style-loader!css-loader!stylus-loader',
       },
       {
         test: /\.js$/,

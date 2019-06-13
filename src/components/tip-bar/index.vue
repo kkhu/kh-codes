@@ -32,6 +32,7 @@ export default {
   justify-content space-between
   align-items center
   background-color #fff6d1
+  font-size 14px
   .icon-info {
     width 30px
     height 100%

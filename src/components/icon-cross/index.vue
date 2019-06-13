@@ -15,12 +15,13 @@ export default {
     display flex
     justify-content center
     align-items center
+    position relative
     line() {
       width 100%
       position absolute
       content ''
       display inline-block
-      border-top solid 0.02rem #ffffff
+      border-top solid 0.02rem #000
     }
     &::before {
       line()

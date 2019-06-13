@@ -42,12 +42,13 @@ export default {
 <style lang="stylus">
   .comp-btn-view {
     min-width 100%
-    min-height dPxToRem(80)
+    min-height 40px
     display flex
     justify-content center
     align-items center
     padding 0
     margin 0 auto
     background-color #F8F8F8
+    border none
   }
 </style>
