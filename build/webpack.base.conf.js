@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.stylus$/,
-        loader: 'style-loader!css-loader!stylus-loader',
+        loader: 'style-loader!css-loader!postcss-loader!stylus-loader',
       },
       {
         test: /\.js$/,

@@ -5,7 +5,7 @@
 <script>
 export default {
   props: {
-    driection: {
+    direction: {
       type: String,
       default: 'up'
     }
