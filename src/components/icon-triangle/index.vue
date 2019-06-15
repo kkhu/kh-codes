@@ -28,11 +28,11 @@ export default {
     }
     &.up::after {
       iconTran()
-      border-bottom solid 5px #ffffff
+      border-bottom solid 5px #ccc
     }
     &.down::after {
       iconTran()
-      border-top solid 5px #ffffff
+      border-top solid 5px #ccc
     }
   }
 </style>

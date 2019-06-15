@@ -4,38 +4,38 @@
 
 <script>
 export default {
-    name: 'comp-button',
-    props: {
-      cls: {
-        type: String,
-        default: ''
-      },
-      isShow: {
-        type: Boolean,
-        default: true
-      },
-      styl: Object,
-      text: {
-        type: String,
-        default: ''
-      },
-      disable: {
-        type: Boolean,
-        default: false
-      },
-      data: {
-        type: Object,
-        default() {
-          return {}
-        }
-      }
+  name: 'comp-button',
+  props: {
+    cls: {
+      type: String,
+      default: ''
     },
-    methods: {
-      clickHandler() {
-        if (this.disable) return
-        this.$emit('on-click', this.data)
+    isShow: {
+      type: Boolean,
+      default: true
+    },
+    styl: Object,
+    text: {
+      type: String,
+      default: ''
+    },
+    disable: {
+      type: Boolean,
+      default: false
+    },
+    data: {
+      type: Object,
+      default() {
+        return {}
       }
     }
+  },
+  methods: {
+    clickHandler() {
+      if (this.disable) return
+      this.$emit('on-click', this.data)
+    }
+  }
 }
 </script>
 
