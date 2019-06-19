@@ -1,3 +1,5 @@
+console.log('hello babel')
+
 const presets = [
   [
     "@babel/env",
