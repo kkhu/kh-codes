@@ -39,6 +39,7 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       },
@@ -48,7 +49,6 @@ module.exports = {
           'vue-style-loader',
           'css-loader',
           'postcss-loader',
-          // { loader: 'postcss-loader', options: { parser: 'sugarss' } },
           'stylus-loader'
         ]
       },
@@ -56,17 +56,8 @@ module.exports = {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader',
-          // 'postcss-loader'
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                require('autoprefixer')
-              ]
-            }
-          }
+          'postcss-loader',
+          'css-loader'
         ]
       },
       {
