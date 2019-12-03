@@ -14,13 +14,13 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    // path: config.build.assetsRoot,
+    // path: path.resolve(__dirname, '../dist'),
+    path: config.build.assetsRoot,
     filename: '[name].[hash:8].js',
     chunkFilename: "[name].[chunkHash:4].js?_t=[chunkhash:8]",
-    // publicPath: process.env.NODE_ENV === 'production'
-    //   ? config.build.assetsPublicPath
-    //   : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.stylus', '.scss'],
@@ -33,21 +33,32 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            'js': 'babel-loader'
-            // 'scss': 'vue-style-loader!css-loader!postcss-loader!sass-loader',
-            // 'stylus': 'vue-style-loader!css-loader!postcss-loader!stylus-loader'
-          }
-        }
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader',
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
       },
       {
-        test: /\.stylus$/,
-        loader: 'style-loader!css-loader!postcss-loader!stylus-loader',
+        test: /\.styl(us)?$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'postcss-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.js$/,
@@ -91,8 +102,7 @@ module.exports = {
     })
   ],
   devServer: {
-    // contentBase: path.resolve(__dirname, '../dist'), //path.join(__dirname, "../dist/"),
-    contentBase: '../dist',
+    contentBase: path.resolve(__dirname, '../dist'),
     compress: true,
     port: 9000
   }
