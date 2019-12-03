@@ -105,7 +105,7 @@ export default {
 .marquee-bar-wp {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 100;
   @keyframes ani-marquee-run {
     to { transform: translate3d(-100%, 0, 0) }
   }
@@ -116,8 +116,8 @@ export default {
   .mq-content-wp {
     overflow: hidden;
     position: relative;
-    flex 1
-    height 100%
+    flex: 1;
+    height: 100%;
     ul {
       margin: 0;
       padding: 0;
@@ -128,7 +128,7 @@ export default {
       float: left;
     }
     .run {
-      animation: ani-marquee-run linear  both; 
+      animation: ani-marquee-run linear both; 
     }
     .run-infinite {
       animation: ani-marquee-run-infinite linear infinite both; 
