@@ -11,7 +11,7 @@ export function getUrlParams(name) {
 /**
  * 日期格式化
  * date {Date|Number} 日期
- * fmt {String} 格式
+ * fmt {String} 格式, 默认格式：yyyy-MM-dd 
  */
 export function dateFormat(date, fmt = 'yyyy-MM-dd') {
 
@@ -122,4 +122,16 @@ export function amountToUp(n) {
   return head + s.replace(/(零.)*零元/, '元')
     .replace(/(零.)+/g, '零')
     .replace(/^整$/, '零元整')
+}
+
+/**
+ * @desc 返回指定精度的字符串
+ * @param {Number} num 数字
+ * @param {Number} digital 精度，默认为0
+ * @return {String} 指定精度的字符串
+ */
+export function toFixed(num = 0, digital = 0) {
+  let ns = String(num).split('.');
+  if (digital === 0) return ns[0];
+  return ns[0] + '.' + (ns[1] || '').substring(0, digital).padEnd(digital, '0');
 }
